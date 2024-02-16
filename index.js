@@ -8,7 +8,7 @@ import dotenv from "dotenv";
 dotenv.config()
 
 //Data Access Object
-// import ReviewsDAO from "./dao/reviewsDAO.js"
+import ReviewsDAO from "./dao/reviewsDAO.js"
 
 const MongoClient = mongodb.MongoClient;
 const mongo_username = process.env['MONGO_USERNAME']
@@ -31,6 +31,7 @@ MongoClient.connect(
         process.exit(1)//ending the process
     })
     .then(async client => { //can run asynchronously
+        await ReviewsDAO.injectDB(client)
         app.listen(port, () => {
             console.log(`listening on port ${port}`)
         })
