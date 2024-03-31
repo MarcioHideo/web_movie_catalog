@@ -5,7 +5,7 @@ import ReviewsDAO from "../dao/reviewsDAO.js" // Use to access database
 export default class ReviewsController {
     static async apiPostReview(req, res, next) {
         try {
-            const movieId = req.body.movieId
+            const movieId = parseInt(req.body.movie_id)
             const review = req.body.review
             const user = req.body.user
 
